@@ -1,4 +1,4 @@
-# CV – Pierre Pèlerin
+## CV – Pierre PELERIN
 
 CV développeur web réalisé en **HTML / CSS**, avec une mise en page moderne et des animations légères, hébergé via **GitHub Pages**.
 
