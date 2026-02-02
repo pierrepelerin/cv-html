@@ -1,0 +1,819 @@
+/* ! Choix de la langue */
+
+/* Enlève l'effet de focus (caret/outline) sur les boutons drapeaux */
+.btnlangageFR, .btnlangageEN {
+	display: inline-block;
+	text-decoration: none;
+}
+
+.btnlangageFR:focus, .btnlangageEN:focus, .btnlangageFR:focus-visible, .btnlangageEN:focus-visible {
+	outline: none;
+}
+
+/* Empêche le caret de texte (utile sur certains navigateurs) */
+.btnlangageFR, .btnlangageEN {
+	caret-color: transparent;
+}
+
+/* par défaut */
+.fr { display:block; }
+.en { display:none; }
+
+/* si on cible #en (drapeau) -> anglais */
+body:has(#en:target) .en { display:block; }
+body:has(#en:target) .fr { display:none; }
+
+/* si on cible une section anglaise -> anglais (menu Skills etc.) */
+body:has(#en-pro:target) .en,
+body:has(#en-formations:target) .en,
+body:has(#en-competences:target) .en,
+body:has(#en-projets:target) .en { display:block; }
+
+body:has(#en-pro:target) .fr,
+body:has(#en-formations:target) .fr,
+body:has(#en-competences:target) .fr,
+body:has(#en-projets:target) .fr { display:none; }
+
+/* si on veut forcer français quand on cible une section FR */
+body:has(#fr:target) .fr { display:block; }
+body:has(#fr:target) .en { display:none; }
+body:has(#fr-pro:target) .fr,
+body:has(#fr-formations:target) .fr,
+body:has(#fr-competences:target) .fr,
+body:has(#fr-projets:target) .fr { display:block; }
+
+body:has(#fr-pro:target) .en,
+body:has(#fr-formations:target) .en,
+body:has(#fr-competences:target) .en,
+body:has(#fr-projets:target) .en { display:none; }
+
+#francais{
+	height: 40px;
+	position: fixed;
+	top: 200px;
+	left: 50px;
+}
+
+#anglais{
+	height: 40px;
+	position: fixed;
+	top: 250px;
+	left: 50px;
+}
+
+@media (max-width: 970px) {
+	#francais{
+		top: 50px;
+		left: 5px;
+	}
+}
+
+@media (max-width: 970px) {
+	#anglais{
+		top: 100px;
+		left: 5px;
+	}
+}
+
+@media (max-width: 880px) {
+	#francais{
+		position: static;
+		margin: 10px 0 10px 10px;
+		gap: 10px;
+	}
+}
+
+@media (max-width: 880px) {
+	#anglais{
+		position: static;
+		margin: 10px;
+		gap: 20px;
+	}
+}
+
+/* ! Eléments généraux */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  overflow-x: hidden; /* Evite la barre de défilement horizontale si besoin */
+}
+
+@media (max-width: 768px) {
+	.topTop{
+		height: 110px !important;
+		display: block;
+		position: fixed;
+		left: 0;
+		right: 0;      /* au lieu de width:100% */
+		width: auto;   /* évite les 100% qui débordent */
+		margin: 0;
+		top: 0;
+		background-color: rgb(103, 103, 103);
+		margin: 0;
+		z-index: 10;
+	}
+}
+
+[id] {
+  scroll-margin-top: 100px;
+    caret-color: transparent;
+}
+
+.langTarget{
+  scroll-margin-top: 100px; /* ajuste à la hauteur de #topTop */
+}
+
+/* ! Body */
+
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	background-image: url("images/fond2.png");
+	background-attachment: fixed;
+	margin: 0;
+	background-size: cover; /* Adapte l’image à la taille de l’écran */
+	background-position: center; /* Centre l’image */
+	background-repeat: no-repeat; /* Evite la répétition de l'image si l'affichage est très grand */
+	font-size: 1em;
+}
+
+@media (max-width: 768px) {
+	body {
+		padding: 0px;
+		margin: 0px;
+		/* padding-top: 60px; */
+		 margin-top: 60px; 
+		 background-image: none;
+	}
+}
+
+/* ! Elements généraux */
+
+/* Prénom Nom */
+h1 {
+	color: rgb(178, 178, 187);
+	margin-left: 30px;
+	margin-bottom: 20px;
+	font-weight: bold;
+}
+
+/* Titres des catégories */
+h2 {
+    color:navy;
+    border-bottom: solid 2px navy;
+    margin: 20px 0 15px 0;
+}
+
+@media (max-width: 768px) {
+	h2 {
+		margin-top: 0;
+		padding-top: 20px;
+	}
+}
+
+/* Intitulé des expériences professionnelles et sous-titres des compétences */
+h3 {
+	margin-left: 50px;
+	color: navy;
+	position: relative;
+	display: inline-block;
+}
+
+h3::after { /* Ligne à gauche du titre */
+	content: "";
+	position: absolute;
+	left: -50px;
+	bottom: 0px;
+	width: 50px; 
+	height: 2px;
+	background-color: navy;
+}
+
+@media (max-width: 768px) {
+	h3 {
+		font-size: 1.3em;
+	}
+}
+
+/* Détail des compétences */
+h4 {
+	font-weight: bold;
+	position: relative;
+	display: inline-block;
+	color: navy;
+	font-style: italic;
+	margin: 10px 0 10px 100px;
+}
+
+h4::after { /* Ligne à gauche du titre */
+	content: "";
+	position: absolute;
+	left: -100px;
+	bottom: 0px;
+	width: 100px;
+	height: 2px;
+	background-color: navy;
+}
+
+@media (max-width: 768px) {
+	h4 {
+		font-size: 1.5em;
+	}
+}
+
+/* Divers */
+a {
+	color: black;
+	text-decoration: none; 
+}
+
+a:hover {
+	color: rgb(158, 179, 41);          
+	text-decoration: underline;
+}
+
+p, li { 
+	margin: 0 0 4px 0 !important;
+}
+
+ul {
+	margin: 0 !important; padding-left: 14px !important;
+}
+
+li{
+  line-height: 1.5;
+}
+
+/* ! "Feuille" CV */
+.layout { 
+	width: 70%;
+	max-width: 1000px;
+	min-width: 750px;
+	margin: 20px auto 20px auto; /* Permet de centrer la feuille */
+	display: grid;
+	grid-template-columns: 4fr 3fr;
+	grid-template-rows: auto 1fr auto auto;
+	grid-template-areas:
+		"top top"
+		"left  right"
+		"projects projects"
+		"bottom bottom";
+	gap: 0px;
+	height: 100%;
+	background-color: white;
+	border: 2px solid navy;
+	box-shadow: -15px -15px 150px navy; /* Ombre */
+}
+
+@media (max-width: 768px) {
+	.layout{ /* Affichage en colonne sur toute la largeur */
+		width: 100%;
+		min-width: 0;
+		grid-template-columns: 1fr;
+		grid-template-rows: auto auto auto auto auto;
+		grid-template-areas:
+			"top"
+			"left"
+			"right"
+			"projects"
+			"bottom";
+		border: none;
+		padding: 0;
+		margin: 0;
+	}
+}
+
+/* ! Zone en-tête (coordonnées + photo) */
+.top {
+	grid-area: top;
+	background: linear-gradient(135deg, #0f2027, #3e626e, #2c5364); /* Dégradé gris en fond */
+	color: rgb(178, 178, 187);
+	display: flex;         
+	align-items: center;
+	gap: 0px;
+	padding-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+	.top{
+		margin: 50px 0 0 0;
+	}
+
+}
+
+/* ! Titre + coordonnées */
+.textTop {
+	flex:1; /* Prend tout l'espace disponible */
+}
+
+/* ! Métier */
+#job {
+	color: rgb(178, 178, 187);
+	font-weight: bold;
+	padding-left: 50px;
+	font-size: 1.3em;
+}
+
+@media (max-width: 768px) {
+	#job {
+		padding-left: 10px;
+	}
+}
+
+/* ! Coordonnées */
+.contactDetails {
+	display: flex;
+	justify-content: space-between;
+	margin : 50px 30px 0 20px;
+	flex: 1;
+}
+
+@media(max-width: 768px) {
+	.contactDetails {
+		margin : 50px 10px 0 10px;
+		flex: 1;
+	}
+}
+
+@media (max-width: 1350px) {
+	.contactDetails {
+		flex-direction:column;
+		gap: 10px;
+		align-items: left;
+	}
+}
+
+/* ! Colonnes des coordonnées */
+.col {
+	font-weight: bold;
+	text-align: center;
+}
+
+@media (max-width: 1350px) {
+	.col {
+		text-align: left;
+		margin-left: 100px;
+	}
+}
+
+@media (max-width: 600px) {
+	.col {
+		margin-left: 10px;
+	}
+}
+
+/* ! Liens des coordonnées de l'en-tête */
+a.linkHeader {
+  color: rgb(178, 178, 187);
+
+}
+
+a.linkHeader:hover {
+  color: rgb(158, 179, 41);          
+}
+
+/* ! Photo de présentation */
+.photo {
+	width: 150px;
+	flex-shrink: 0; /* Empêche la photo de rétrécir même si le conteneur n'a plus assez de place */
+	box-shadow: 0 8px 20px rgba(0, 0, 0, 1);
+	height: 200px;
+}
+
+/* ! Profil personnel et expériences professionnelles */
+.left {
+	grid-area: left;
+	margin-left: 10px;
+	padding: 10px;
+	border-right: double 10px navy;
+}
+
+@media (max-width: 768px) {
+	.left {
+		border: none;
+	}
+}
+
+/* ! Paragraphe d'introduction */
+#intro {
+	font-size: 1.2em;
+	line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+	#intro{
+		font-size: 1.2em !important;
+	}
+}
+
+/* ! Informations sur l'entreprisee */
+.companyInfo {
+	display: flex;
+	gap: 0px;
+	width: 100%;
+}
+
+/* ! Différents éléments des infos de l'entreprise */
+.companyInfo > div {
+	display: flex;
+	flex: 1;
+	justify-content: center;
+	align-items: center;
+	gap: 8px;
+}
+
+/* ! Logo de l'entreprise */
+.logo {
+	max-width: 200px;
+	max-height: 50px;
+}
+
+/* ! Personne à contacter de l'entreprise */
+.contact {
+	font-size: 0.7em;
+	font-weight: bold;
+}
+
+/* ! Empêche le retour à la ligne automatique */
+.preventLineBreak {
+	white-space: nowrap;
+}
+
+/* ! Formation */
+
+.education {
+	margin-top: 20px !important;
+}
+
+.education p {
+	margin-bottom: 20px !important;
+}
+
+/* ! Icônes pour les formations */
+.iconEducation {
+	height: 30px;
+	float: left;
+	margin-right: 10px;
+	margin-top: -5px;
+}
+
+.education ul {
+	margin-top: -5px !important;
+	margin-bottom: 20px !important;
+}
+
+/* ! Compétences, langues et centres d'intérêt */
+.right {
+	grid-area: right;
+	padding: 10px;
+	margin-right: 10px;
+	margin-left: 10px;
+}
+
+/* ! Passe en dessous des float (right et left) */
+.clear {
+	clear: both;
+}
+
+/* ! Icônes et commentaires des compétences */
+.textSkill {
+	margin-top: 10px;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin-bottom: 20px;
+}
+
+@media (max-width:768px) {
+	.textSkill {
+		font-size: 1.2em;
+	}
+}
+
+/* ! Icônes des outils techniques */
+.icon {
+	height: 40px;
+}
+
+ /* ! Icônes des outils, en "vrac" */
+.iconsTools {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	gap: 40px;
+	margin-top: 15px;
+} 
+
+/* ! Bloc langues */
+.langage {
+	margin-top: 30px;
+}
+
+/* ! Icônes des pays pour les langues */
+.iconCountry {
+	height: 35px;
+	float: left;
+	margin: -10px 5px 20px 0px;
+}
+
+/* ! Certifications */
+.certifications p {
+	margin-bottom: 20px !important;
+}
+
+.certifications li {
+	margin-bottom: -51px;
+}
+
+.certifications {
+	margin-top: 20px !important;
+	margin-bottom: 30px !important;
+}
+
+/* ! Centres d'intérêt */
+.interests {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+/* ! Icônes des loisirs */
+.hobbies {
+	height: 65px;
+	margin: 10px 10px 10px 10px;
+	gap: 10px;
+	display: inline-block;
+	margin: 8px;
+}
+
+@media (max-width: 768px) {
+	.hobbies {
+		height: 80px;
+	}
+}
+
+/* ! Layout Projets */
+.layoutBottom { 
+	width: 70%;
+	max-width: 1000px;
+	min-width: 750px;
+	margin: 0 auto 0 auto; /* Permet de centrer la feuille */
+	gap: 0px;
+	height: 100%;
+	background-color: #F2F2F2;
+	border: 2px solid navy;
+	box-shadow: -15px -15px 150px navy; /* Ombre */
+
+}
+
+@media (max-width: 768px) {
+	.layoutBottom{ 
+		width: 100% !important;
+		min-width: 0;
+		padding: 0px;
+		margin: 0px;
+		border: none;
+	}
+}
+
+/* ! Détail des projets */
+.projects {
+	grid-area: projects;
+	background: #f2f2f2;
+	font-weight: bold;
+	padding : 0 0 0 20px;
+	padding: 0px 20px 10px 20px !important;
+}
+
+/* ! Carte projet */
+.cardProject {
+	display: flex;
+	align-items: flex-start;
+	background: #ffffff;
+	padding: 20px;
+	margin-top: 20px;
+	border-radius: 30px;
+	box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+}
+
+@media (max-width: 768px) {
+	.cardProject{ 
+		display: block;
+		background: #ffffff;
+		padding: 20px;
+		margin-top: 20px;
+		border-radius: 30px;
+		box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+	}
+}
+
+.cardProject p {
+	margin-bottom: 20px !important;
+}
+
+/* ! Boutons vers les liens */
+.buttonProject {
+	padding: 5px;
+	font-weight: bold;
+}
+
+/* ! Icône ordinateur */
+.fa-laptop-code{
+    color: navy;
+}
+
+/* ! Lien vers un projet */
+.linkProject {
+	margin: 0 0 0 50px;
+	font-style: italic;
+}
+
+/* ! Liste des détail du projet */
+.listProjects {
+	font-weight: lighter;
+}
+
+/* ! Image du projet */
+.imageProject {
+	width: 33%;
+	height: auto;
+	border: 1px solid navy;
+	margin-left: auto;
+}
+
+@media (max-width: 768px) {
+	.imageProject {
+		width: 70% !important;
+		display: block;
+		margin: 0 auto;
+	}
+}
+
+/* ! Layout Copyright */
+.layoutCopy {
+	width: 70%;
+	max-width: 1000px;
+	min-width: 750px;
+	gap: 0px;
+	background-color: white;
+	border: 2px solid navy;
+	box-shadow: -15px -15px 150px navy; /* Ombre */
+	margin: 20px auto 20px auto; 
+	padding-top: 20px;
+	padding-bottom: 20px;
+	height: 100%;
+	background: linear-gradient(135deg, #0f2027, #3e626e, #2c5364);
+	color: rgb(178, 178, 187);
+	font-size: 0.8em;
+	font-weight: bold;
+	text-align: center;
+}
+
+@media (max-width: 768px) {
+	.layoutCopy{ 
+		padding: 10px 0 10px 0;
+		margin: 0;
+		width: 100% !important;
+		min-width: 0;
+		border: none;
+	}
+
+	.layoutCopy p {
+		margin-bottom: 0 !important;
+	}
+}
+
+.menu {
+		position: fixed;
+		top: 10px;
+		left: 120px;
+		margin: 5px 3px 3px 0;
+		/*gap: 20px; */
+  text-align: center;
+  font-size: 0.8 em !important;
+
+}
+
+@media (min-width: 768px) {
+	.menu {
+    	display: none;
+	}
+}
+
+.menu a {
+				position: static;
+		margin: 5px;
+		gap: 10px;
+		font-weight: bold;
+		font-size: 1.2em;
+		color: white;
+		line-height: 1.4
+}
+
+/* ! GESTION DE L'IMPRESSION */
+
+@media print {
+  
+	@page { /* Définir le format et les marges */
+		size: A4;
+		margin: 12mm;
+	}
+
+	html, body { /* Forcer une base plus compacte */
+		font-size: 10pt !important;
+		line-height: 1.15 !important;
+	}
+
+	/* Réduire l'échelle globale */
+	body { 
+		zoom: 0.88;
+		margin: 0;
+		font-size: 11pt;
+		line-height: 1.25;
+		background-image: none;
+	}
+
+	.topTop {
+		visibility: hidden;
+	}
+
+	* { /* Couleurs et rendu */
+		-webkit-print-color-adjust: exact;
+		print-color-adjust: exact;
+	}
+
+	.layout { /* Neutraliser le responsive mobile et les contraintes */
+		min-width: 0 !important;
+		margin: 0 !important;
+		border: none !important;
+		display: grid !important;
+		grid-template-columns: 4fr 3fr !important;
+		grid-template-rows: auto 1fr auto auto !important;
+		grid-template-areas:
+			"top top"
+			"left right"
+			"projects projects"
+			"bottom bottom" !important;
+		width: 100%;
+		gap: 0 !important;
+		width: auto !important;
+		max-width: none !important;
+	}
+
+	/* Ecraser les espaces trop grands */
+	h1 { font-size: 18pt !important; margin: 0 0 6px 0 !important; }
+	h2 { font-size: 12pt !important; margin: 10px 0 6px 0 !important; }
+	h3 { font-size: 11pt !important; margin: 8px 0 4px 50px !important; }
+	h4 { font-size: 11pt !important; margin: 8px 0 4px 100px !important; }
+
+	/* Réduire les marges des cartes et blocs */
+	.cardProject, .bloc, section {
+		padding: 10px !important;
+		margin-bottom: 8px !important;
+		box-shadow: none !important;
+		border-radius: 0 !important;
+		break-inside: avoid;
+		page-break-inside: avoid;
+	}
+
+	.cardProject{ /* Empêcher les cartes de se couper */
+		break-inside: avoid;
+		page-break-inside: avoid;
+	}
+
+	h1, h2, h3 { /* Eviter qu'un titre ne reste en bas de page */
+		break-after: avoid !important;
+		page-break-after: avoid !important;
+		break-inside: avoid !important;
+	}
+ 
+	ul, li {
+    	break-inside: avoid !important;        /* standard moderne */
+    	page-break-inside: avoid !important;   /* anciens moteurs */
+	}
+
+	.projects{
+    	break-before: page !important;       /* standard moderne */
+    	page-break-before: always !important;/* compat anciens navigateurs */
+	}
+
+	.left, .right { /* Empêcher le navigateur d’empiler */
+		width: auto !important;
+		max-width: none !important;
+	}
+
+	.icon { height: 40px; }
+	.hobbies { height: 35px; }
+	body { background: none !important; }
+
+	.imageProject {
+    	width: 33% !important;
+    	max-width: 33% !important;
+    	min-width: 33% !important;
+	}
+
+}
