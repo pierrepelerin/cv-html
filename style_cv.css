@@ -645,6 +645,16 @@ a.linkHeader:hover {
 	margin-left: auto;
 }
 
+/* ! Images tournantes du projet divers */
+#slider {
+	margin-top: 50px;
+	transition: opacity 0.5s ease-in-out;
+}
+#slider2 {
+	margin-top: 50px;
+	transition: opacity 0.5s ease-in-out;
+}
+
 @media (max-width: 768px) {
 	.imageProject {
 		width: 70% !important;
